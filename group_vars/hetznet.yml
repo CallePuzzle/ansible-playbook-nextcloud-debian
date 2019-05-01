@@ -1,0 +1,20 @@
+---
+nextcloud_db_host: mysql
+nextcloud_db_user: nextcloud
+nextcloud_db_pass: password
+nextcloud_db_name: nextcloud_db
+
+nextcloud_table_prefix: ""
+
+nextcloud_trusted_domains: cloud.example.com
+nextcloud_admin_user: admin
+nextcloud_admin_password: admin
+nextcloud_ports: []
+
+nextcloud_data_dir_mysql: /srv/docker/nextcloud/mysql
+nextcloud_data_dir_nextcloud: /srv/docker/nextcloud/nextcloud
+
+haproxy_links:
+  - nextcloud
+haproxy_ports:
+  - 80:80

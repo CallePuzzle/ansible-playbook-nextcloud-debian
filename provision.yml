@@ -1,0 +1,14 @@
+---
+- name: Callepuzzle Hetznet cloud
+  hosts: hetznet
+
+  pre_tasks:
+    - name: Install python-setuptools
+      apt:
+        name: python-setuptools
+      tags:
+        - nextcloud
+
+  roles:
+    - { role: nextcloud, tags: [ 'nextcloud' ] }
+    - { role: haproxy, tags: [ 'haproxy' ] }

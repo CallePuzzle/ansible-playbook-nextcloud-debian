@@ -1,0 +1,10 @@
+---
+- name: nextcloud
+  src: https://github.com/CallePuzzle/ansible-role-nextcloud
+  scm: git
+  version: "master"
+
+- name: haproxy
+  src: https://github.com/CallePuzzle/ansible-role-haproxy
+  scm: git
+  version: "master"
