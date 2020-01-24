@@ -1,3 +1,4 @@
 .idea/
 roles/*
 *.retry
+.vault-password-file

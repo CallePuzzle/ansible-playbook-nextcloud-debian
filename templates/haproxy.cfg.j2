@@ -13,7 +13,13 @@ defaults
 
 frontend http-in
     bind *:80
+    bind *:443 ssl crt /usr/local/etc/haproxy/cloud.callepuzzle.com.pem
+    mode http
     default_backend servers
+    redirect scheme https if !{ ssl_fc }
 
 backend servers
-    server server1 nginx:80 maxconn 32
+    server server1 nextcloud:80 maxconn 32
+    http-request set-header X-Forwarded-Port %[dst_port]
+    http-request add-header X-Forwarded-Proto https if { ssl_fc }
+    http-response set-header Strict-Transport-Security max-age=16000000;\ includeSubDomains;\ preload;
