@@ -61,7 +61,17 @@ $ docker exec -u www-data -it nextcloud php occ maintenance:mode --off
 
 Actualizar Nextcloud
 --------------------
+Poner en modo mantenimiento:
+```bash
+$ docker exec -u www-data -it nextcloud php occ maintenance:mode --on
+```
+
 Cambiar la versión en la variable `nextcloud_version` y ejecutar:
 ```bash
 $ ansible-playbook -i inventory.ini --vault-password-file .vault-password-file provision.yml --tags run-nextcloud
+```
+
+Quitar el modo mantenimiento:
+```bash
+$ docker exec -u www-data -it nextcloud php occ maintenance:mode --off
 ```
