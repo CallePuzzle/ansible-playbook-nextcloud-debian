@@ -12,7 +12,7 @@ nextcloud_db_name: nextcloud_db
 
 nextcloud_table_prefix: "oc_"
 
-nextcloud_version: 19.0.8
+nextcloud_version: 21.0.1
 
 nextcloud_trusted_domains: cloud.callepuzzle.com
 nextcloud_admin_user: admin
