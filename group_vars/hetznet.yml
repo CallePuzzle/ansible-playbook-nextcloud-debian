@@ -12,7 +12,7 @@ nextcloud_db_name: nextcloud_db
 
 nextcloud_table_prefix: "oc_"
 
-nextcloud_version: 18.0.4
+nextcloud_version: 21.0.1
 
 nextcloud_trusted_domains: cloud.callepuzzle.com
 nextcloud_admin_user: admin
@@ -23,13 +23,19 @@ nextcloud_admin_password: !vault |
           32313066343834346431383539353939373938373232346433643933663034343933386332323330
           3662313062666638360a376431313434373338316432306436623831346664316136386564373731
           61623935313735336231303863666165353237356163646130626335346666626436
-nextcloud_ports: []
+nextcloud_ports:
+  - 127.0.0.1:8080:80
 
 nextcloud_data_dir_mysql: /srv/docker/nextcloud/mysql
 nextcloud_data_dir_nextcloud: /srv/docker/nextcloud/nextcloud
 
-haproxy_links:
-  - nextcloud
-haproxy_ports:
-  - 80:80
-  - 443:443
+nginx_config_http_template_enable: true
+nginx_config_http_template:
+  default:
+    template_file: default.conf.j2
+    conf_file_name: default.conf
+    conf_file_location: /etc/nginx/conf.d/
+  cloud:
+    template_file: cloud.conf.j2
+    conf_file_name: cloud.conf
+    conf_file_location: /etc/nginx/conf.d/

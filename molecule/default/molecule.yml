@@ -1,0 +1,17 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+platforms:
+  - name: instance
+    box: debian/stretch64
+    interfaces:
+      - auto_config: true
+        network_name: private_network
+        type: static
+        ip: 192.168.56.20
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

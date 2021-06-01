@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+
+  collections:
+    - nginxinc.nginx_core
+
+  vars:
+    nextcloud_trusted_domains: 192.168.56.20
+    nextcloud_ports:
+      - 127.0.0.1:8080:80
+
+    nginx_config_http_template_enable: true
+    nginx_config_http_template:
+      app:
+        template_file: default.conf.j2
+        conf_file_name: default.conf
+        conf_file_location: /etc/nginx/conf.d/
+
+  pre_tasks:
+    - name: apt update
+      apt:
+        update_cache: yes
+
+  roles:
+    - { role: nextcloud, tags: [ 'nextcloud' ] }
+    - { role: nginx, tags: [ 'nginx' ] }
+    - { role: nginx_config, tags: [ 'nginx' ] }
