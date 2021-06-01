@@ -15,7 +15,7 @@ nextcloud_table_prefix: "oc_"
 
 nextcloud_version: 21.0.1
 
-nextcloud_trusted_domains: cloud.callepuzzle.com
+nextcloud_trusted_domains: casa.callepuzzle.com
 nextcloud_admin_user: admin
 nextcloud_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256

@@ -76,3 +76,13 @@ Quitar el modo mantenimiento:
 ```bash
 $ docker exec -u www-data -it nextcloud php occ maintenance:mode --off
 ```
+
+
+## TODO
+
+apt install snapd
+snap install core
+snap refresh core
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot
+certbot --nginx
