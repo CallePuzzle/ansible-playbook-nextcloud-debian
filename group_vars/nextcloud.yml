@@ -1,5 +1,5 @@
 ---
-ansible_python_interpreter: "{{ lookup('env','HOME') }/venv/bin/python"
+ansible_python_interpreter: "{{ lookup('env','HOME') }}/venv/bin/python"
 nextcloud_db_host: mysql
 nextcloud_db_user: nextcloud
 nextcloud_db_pass: !vault |
