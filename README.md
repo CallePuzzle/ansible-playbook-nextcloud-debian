@@ -1,19 +1,20 @@
-Callepuzzle Hetzner cloud server
+Callepuzzle Nextcloud
 ================================
-URL consola de Hetzer: [https://console.hetzner.cloud](https://console.hetzner.cloud)
+Playbook para instalar Nextcloud en Debian 10 usando MySql Nextcloud y Nginx
 
 Provision
 ---------
 Se realiza mediante Ansible
 
 ### Dependencies
-El playbook tiene dos roles como dependencias:
-* https://galaxy.ansible.com/jilgue/ansible_role_docker_haproxy
+El playbook tiene como dependencias un rol y una colección:
 * https://galaxy.ansible.com/jilgue/ansible_role_docker_nextcloud
+* https://galaxy.ansible.com/nginxinc/nginx_core
 
 Para instalarlas:
 ```bash
 $ ansible-galaxy install --roles-path roles -r requirements.yml
+$ ansible-galaxy collection install nginxinc.nginx_core
 ```
 
 ### Instalación

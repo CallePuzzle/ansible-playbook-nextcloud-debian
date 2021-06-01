@@ -1,6 +1,6 @@
 ---
 - name: Callepuzzle Hetznet cloud
-  hosts: hetznet
+  hosts: nextcloud
 
   collections:
     - nginxinc.nginx_core
