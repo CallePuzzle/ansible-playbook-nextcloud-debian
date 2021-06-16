@@ -1,19 +1,19 @@
 ---
-ansible_python_interpreter: "{{ lookup('env','HOME') }}/venv/bin/python"
+ansible_python_interpreter: "/usr/bin/python3"
 nextcloud_db_host: mysql
 nextcloud_db_user: nextcloud
 nextcloud_db_pass: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          61633433396332383565336633613965316362653838323736343738666438346631636666633763
-          6333343863366266356466626236303530663735663861370a333230353366376261613230636331
-          34356662343338313738663166623934326533333832373039373062313034326235336165366361
-          6365623034303430370a306564383632643364343263346161656230333030376663656663383664
-          3832
+          39656439653231643661376236373430303363623562656330383464323230613039363561396139
+          3232396432336665366133656132393062373432303061380a303739366263323035616161323966
+          30366464626138353761303432663135613234613634643762663236366232396333636161633834
+          3365326334613162610a346135363238353736373264643331313338366139323234326565333862
+          35303238646232373662356665616233393437323166383965633032613762633762
 nextcloud_db_name: nextcloud_db
 
 nextcloud_table_prefix: "oc_"
 
-nextcloud_version: 21.0.1
+nextcloud_version: 21.0.2
 
 nextcloud_trusted_domains: casa.callepuzzle.com
 nextcloud_admin_user: admin
@@ -32,11 +32,7 @@ nextcloud_data_dir_nextcloud: /srv/docker/nextcloud/nextcloud
 
 nginx_config_http_template_enable: true
 nginx_config_http_template:
-#  default:
-#    template_file: default.conf.j2
-#    conf_file_name: default.conf
-#    conf_file_location: /etc/nginx/conf.d/
-  cloud:
-    template_file: cloud.conf.j2
-    conf_file_name: cloud.conf
+  default:
+    template_file: default.conf.j2
+    conf_file_name: default.conf
     conf_file_location: /etc/nginx/conf.d/

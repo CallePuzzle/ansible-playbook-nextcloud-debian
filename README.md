@@ -15,6 +15,7 @@ Para instalarlas:
 ```bash
 $ ansible-galaxy install --roles-path roles -r requirements.yml
 $ ansible-galaxy collection install nginxinc.nginx_core
+$ ansible-galaxy collection install community.general
 ```
 
 ### Instalación
@@ -85,7 +86,9 @@ snap install core
 snap refresh core
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
-certbot --nginx
+certbot --nginx --register-unsafely-without-email
 
 
 add /etc/nginx/dhparam
+
+ansible-vault encrypt_string --vault-password-file .vault-password-file password --name nextcloud_db_pass

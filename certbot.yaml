@@ -1,0 +1,25 @@
+---
+- name: Callepuzzle Hetznet cloud
+  hosts: nextcloud
+  become: true
+  become_method: su
+
+  tasks:
+    - name: Install snapd
+      package:
+        name: snapd
+
+    - name: Install core
+      community.general.snap:
+        name: core
+
+    - name: Install certbot
+      community.general.snap:
+        name: certbot
+        classic: yes
+
+    - name: Create bin link
+      ansible.builtin.file:
+        src: /snap/bin/certbot
+        dest: /usr/bin/certbot
+        state: link
