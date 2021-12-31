@@ -1,5 +1,5 @@
 ---
-- name: Callepuzzle Hetznet cloud
+- name: Callepuzzle OPNSense
   hosts: all
   become: true
   become_method: su
@@ -15,6 +15,19 @@
 
   roles:
     - { role: nextcloud, tags: [ 'nextcloud' ] }
+    - { role: photoprism, tags: [ 'photoprism' ], vars: {
+          photoprism_admin_password: "{{ photoprism_admin_password_viajes }}",
+          photoprism_site_url: "https://fotos.viajes.callepuzzle.com",
+          photoprism_database_name: "photoprismviajes",
+          photoprism_database_user: "photoprismviajes",
+          photoprism_database_password: "{{ photoprism_database_password_viajes }}",
+          photoprism_site_title: "Fotos viajes",
+          photoprism_site_caption: "Fotos viajes",
+          photoprism_site_description: "",
+          photoprism_site_author: "",
+          photoprism_originals: /srv/docker/photoprism_viajes/originals,
+          photoprism_storage: /srv/docker/photoprism_viajes/storage,
+      }}
     - { role: nginx, tags: [ 'nginx' ] }
     - { role: nginx_config, tags: [ 'nginx' ] }
 

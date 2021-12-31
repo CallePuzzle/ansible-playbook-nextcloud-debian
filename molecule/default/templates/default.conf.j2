@@ -17,6 +17,25 @@ server {
     }
 }
 
+upstream photoprism {
+    server 127.0.0.1:2342;
+}
+
+server {
+    #listen      443 ssl;
+    listen      81;
+    server_name  localhost;
+
+    #ssl_certificate        /etc/letsencrypt/live/cloud.callepuzzle.com/cert.pem;
+    #ssl_certificate_key    /etc/letsencrypt/live/cloud.callepuzzle.com/privkey.pem;
+
+    location / {
+        proxy_pass http://photoprism;
+        proxy_set_header Host $host;
+        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+    }
+}
+
 #server {
 #  listen 80;
 #  return 301 https://$host$request_uri;

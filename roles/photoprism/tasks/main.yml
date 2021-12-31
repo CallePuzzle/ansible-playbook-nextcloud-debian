@@ -1,0 +1,52 @@
+- name: Create database and user
+# ansible-galaxy collection install community.docker
+  community.docker.docker_container_exec:
+    container: mysql
+    command: "mysql -p{{ mysql_root_password }} -e 'CREATE DATABASE IF NOT EXISTS {{ photoprism_database_name }}; CREATE USER IF NOT EXISTS \"{{ photoprism_database_user }}\"@\"%\" IDENTIFIED BY \"{{ photoprism_database_password }}\"; GRANT ALL ON {{ photoprism_database_name }}.* TO \"{{ photoprism_database_user }}\"@\"%\";'"
+
+- name: Run photoprism
+  docker_container:
+    name: photoprism
+    restart_policy: always
+    image: "photoprism/photoprism:{{ photoprism_image }}"
+    security_opts:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    #user: "1000:1000"
+    env:
+      PHOTOPRISM_ADMIN_PASSWORD: "{{ photoprism_admin_password }}"
+      PHOTOPRISM_SITE_URL: "{{ photoprism_site_url }}"
+      PHOTOPRISM_ORIGINALS_LIMIT: "5000"
+      PHOTOPRISM_HTTP_COMPRESSION: "gzip"
+      PHOTOPRISM_DEBUG: "false"
+      PHOTOPRISM_PUBLIC: "false"
+      PHOTOPRISM_READONLY: "false"
+      PHOTOPRISM_EXPERIMENTAL: "false"
+      PHOTOPRISM_DISABLE_CHOWN: "false"
+      PHOTOPRISM_DISABLE_WEBDAV: "false"
+      PHOTOPRISM_DISABLE_SETTINGS: "false"
+      PHOTOPRISM_DISABLE_TENSORFLOW: "false"
+      PHOTOPRISM_DISABLE_FACES: "false"
+      PHOTOPRISM_DISABLE_CLASSIFICATION: "false"
+      PHOTOPRISM_DARKTABLE_PRESETS: "false"
+      PHOTOPRISM_DETECT_NSFW: "false"
+      PHOTOPRISM_UPLOAD_NSFW: "true"
+      PHOTOPRISM_DATABASE_DRIVER: "mysql"
+      PHOTOPRISM_DATABASE_SERVER: "mysql:3306"
+      PHOTOPRISM_DATABASE_NAME: "{{ photoprism_database_name }}"
+      PHOTOPRISM_DATABASE_USER: "{{ photoprism_database_user }}"
+      PHOTOPRISM_DATABASE_PASSWORD: "{{ photoprism_database_password }}"
+      PHOTOPRISM_SITE_TITLE: "{{ photoprism_site_title }}"
+      PHOTOPRISM_SITE_CAPTION: "{{ photoprism_site_caption }}"
+      PHOTOPRISM_SITE_DESCRIPTION: "{{ photoprism_site_description }}"
+      PHOTOPRISM_SITE_AUTHOR: "{{ photoprism_site_author }}"
+      HOME: "/photoprism"
+    ports:
+      - "127.0.0.1:{{ photoprism_port }}:2342"
+    volumes:
+      - "{{ photoprism_originals }}:/photoprism/originals"
+      - "{{ photoprism_storage }}:/photoprism/storage"
+    links:
+      - mysql
+  tags:
+    - run-photoprism

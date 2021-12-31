@@ -1,4 +1,5 @@
 .idea/
 roles/*
+!roles/photoprism/
 *.retry
 .vault-password-file

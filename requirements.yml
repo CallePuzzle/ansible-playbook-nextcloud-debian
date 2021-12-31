@@ -1,4 +1,4 @@
 ---
 - name: nextcloud
   src: jilgue.ansible_role_docker_nextcloud
-  version: 1.0.0
+  version: v1.0.0
