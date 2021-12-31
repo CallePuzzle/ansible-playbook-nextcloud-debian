@@ -1,5 +1,5 @@
 ---
-- name: Callepuzzle Hetznet cloud
+- name: Callepuzzle OPNSense
   hosts: nextcloud
   become: true
   become_method: su

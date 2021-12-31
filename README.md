@@ -57,7 +57,7 @@ Backup
 ```bash
 $ docker exec -u www-data -it nextcloud php occ maintenance:mode --on
 $ rsync -Aavx /srv/docker/nextcloud/nextcloud/data /backups/nextcloud-dirbkp_`date +"%Y%m%d"`/
-$ docker exec -it mysql mysqldump --single-transaction -unextcloud -ppassword nextcloud_db > /backups/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+$ docker exec -it mysql mysqldump --single-transaction -unextcloud -ppassword nextcloud_db > /srv/docker/nextcloud/nextcloud/data/backup.sql
 $ docker exec -u www-data -it nextcloud php occ maintenance:mode --off
 ```
 

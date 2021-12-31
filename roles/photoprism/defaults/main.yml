@@ -1,0 +1,14 @@
+---
+photoprism_image: latest
+photoprism_admin_password: "insecure"
+photoprism_site_url: "http://localhost:2342"
+photoprism_database_name: "photoprism"
+photoprism_database_user: "photoprism"
+photoprism_database_password: "insecure"
+photoprism_site_title: "PhotoPrism"
+photoprism_site_caption: "Browse Your Life"
+photoprism_site_description: ""
+photoprism_site_author: ""
+photoprism_originals: /srv/docker/photoprism/originals
+photoprism_storage: /srv/docker/photoprism/storage
+photoprism_port: 2342

@@ -25,5 +25,18 @@
 
   roles:
     - { role: nextcloud, tags: [ 'nextcloud' ] }
+    - { role: photoprism, tags: [ 'photoprism' ], vars: {
+          photoprism_admin_password: "molecule",
+          photoprism_site_url: "http://localhost:2342",
+          photoprism_database_name: "molecule",
+          photoprism_database_user: "molecule",
+          photoprism_database_password: "molecule",
+          photoprism_site_title: "PhotoPrism",
+          photoprism_site_caption: "Browse Your Life",
+          photoprism_site_description: "",
+          photoprism_site_author: "",
+          photoprism_originals: /srv/docker/photoprism_molecule/originals,
+          photoprism_storage: /srv/docker/photoprism_molecule/storage,
+      }}
     - { role: nginx, tags: [ 'nginx' ] }
     - { role: nginx_config, tags: [ 'nginx' ] }

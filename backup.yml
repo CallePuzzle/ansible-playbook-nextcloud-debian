@@ -1,0 +1,39 @@
+---
+- name: Callepuzzle OPNSense
+  hosts: nextcloud
+  become: true
+  become_method: su
+
+  tasks:
+    - name: Add an apt key
+      ansible.builtin.apt_key:
+        keyserver: hkp://keyserver.ubuntu.com:80
+        id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+      register: key
+
+    - name: Add mono repository
+      ansible.builtin.apt_repository:
+        repo: "deb http://download.mono-project.com/repo/debian buster main"
+        state: present
+        filename: mono-official
+      register: repository
+
+    - name: Upgrade apt if repository and key changes
+      ansible.builtin.apt:
+        update_cache: yes
+      when: key.changed and repository.changed
+
+    - name: Install mono-devel apt-transport-https nano git-core software-properties-common dirmngr
+      ansible.builtin.apt:
+        name:
+          - mono-devel
+          - apt-transport-https
+          - nano
+          - git-core
+          - software-properties-common
+          - dirmngr
+        state: latest
+
+    - name: Install duplicati from download url
+      apt:
+        deb: https://updates.duplicati.com/beta/duplicati_2.0.6.3-1_all.deb
