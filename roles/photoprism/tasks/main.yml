@@ -6,7 +6,7 @@
 
 - name: Run photoprism
   docker_container:
-    name: photoprism
+    name: "{{ photoprism_container_name }}"
     restart_policy: always
     image: "photoprism/photoprism:{{ photoprism_image }}"
     security_opts:

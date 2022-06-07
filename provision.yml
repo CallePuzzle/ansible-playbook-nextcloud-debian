@@ -15,7 +15,7 @@
 
   roles:
     - { role: nextcloud, tags: [ 'nextcloud' ] }
-    - { role: photoprism, tags: [ 'photoprism' ], vars: {
+    - { role: photoprism, tags: [ 'photoprism-viajes' ], vars: {
           photoprism_admin_password: "{{ photoprism_admin_password_viajes }}",
           photoprism_site_url: "https://fotos.viajes.callepuzzle.com",
           photoprism_database_name: "photoprismviajes",
@@ -28,8 +28,23 @@
           photoprism_originals: /srv/docker/photoprism_viajes/originals,
           photoprism_storage: /srv/docker/photoprism_viajes/storage,
       }}
+    - { role: photoprism, tags: [ 'photoprism-cesar' ], vars: {
+          photoprism_container_name: photoprismcesar,
+          photoprism_admin_password: "{{ photoprism_admin_password_cesar }}",
+          photoprism_site_url: "https://fotos.cesar.callepuzzle.com",
+          photoprism_database_name: "photoprismcesar",
+          photoprism_database_user: "photoprismcesar",
+          photoprism_database_password: "{{ photoprism_database_password_cesar }}",
+          photoprism_site_title: "Fotos César",
+          photoprism_site_caption: "Fotos César",
+          photoprism_site_description: "",
+          photoprism_site_author: "",
+          photoprism_originals: /srv/docker/photoprism_cesar/originals,
+          photoprism_storage: /srv/docker/photoprism_cesar/storage,
+          photoprism_port: 2343
+      }}
     - { role: nginx, tags: [ 'nginx' ] }
-    - { role: nginx_config, tags: [ 'nginx' ] }
+    - { role: nginx_config, tags: [ 'nginx', 'nginx-config' ] }
 
   tasks:
     - name: Copy dhparam
