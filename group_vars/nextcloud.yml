@@ -20,7 +20,7 @@ mysql_root_password: !vault |
 
 nextcloud_table_prefix: "oc_"
 
-nextcloud_version: 24.0.4
+nextcloud_version: 25.0.2
 
 nextcloud_trusted_domains: casa.callepuzzle.com
 nextcloud_admin_user: admin

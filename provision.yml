@@ -1,8 +1,8 @@
 ---
 - name: Callepuzzle OPNSense
   hosts: all
-  become: true
-  become_method: su
+  #become: true
+  #become_method: su
 
   collections:
     - nginxinc.nginx_core
